@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  casimg:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      args:
+        VERSION: dev
+        BUILD_DATE: "${BUILD_DATE}"
+        COMMIT_ID: "${COMMIT_ID}"
+    container_name: casimg-dev
+    restart: unless-stopped
+    ports:
+      - "64580:80"
+    environment:
+      - TZ=America/New_York
+      - MODE=development
+      - PORT=80
+      - ADDRESS=0.0.0.0
+    volumes:
+      - ./rootfs/config:/config
+      - ./rootfs/data:/data
+    networks:
+      - casimg_network
+
+networks:
+  casimg_network:
+    driver: bridge

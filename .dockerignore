@@ -1,0 +1,15 @@
+.git
+.github
+.gitea
+.gitignore
+.dockerignore
+binaries
+releases
+*.tar.gz
+*.zip
+TODO.AI.md
+PLAN.md
+.DS_Store
+*.swp
+*.swo
+*~

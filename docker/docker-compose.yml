@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  casimg:
+    image: ghcr.io/casapps/casimg:latest
+    container_name: casimg
+    restart: unless-stopped
+    ports:
+      - "64580:80"
+    environment:
+      - TZ=America/New_York
+      - MODE=production
+      - PORT=80
+      - ADDRESS=0.0.0.0
+    volumes:
+      - ./rootfs/config:/config
+      - ./rootfs/data:/data
+    networks:
+      - casimg_network
+
+networks:
+  casimg_network:
+    driver: bridge
